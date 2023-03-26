@@ -39,8 +39,8 @@ export const generatePackage = (config: Config) => {
         scripts: {
             start: "tsx src/index.ts",
             test: "tsx test/runTests.ts",
-            build: "tsc -p . && tsx esbuild-build.ts",
-            watch: "tsx esbuild-watch.ts",
+            build: "tsc -p . && tsx esbuild.ts",
+            watch: "tsx esbuild.ts --watch",
             lint: "eslint . --ext .ts",
         },
         dependencies: react ? reactDependencies : {},

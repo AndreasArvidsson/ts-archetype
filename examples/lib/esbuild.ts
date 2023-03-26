@@ -1,3 +1,4 @@
+
 import esbuild from "esbuild";
 
 const options: esbuild.BuildOptions = {
@@ -8,16 +9,25 @@ const options: esbuild.BuildOptions = {
     bundle: true,
 };
 
-export const build = async () => {
+async function build() {
     await esbuild.build({
         ...options,
         minify: true,
         entryNames: "[name]-[hash]",
         assetNames: "[name]-[hash]",
     });
-};
+}
 
-export const watch = async () => {
+async function watch() {
     const ctx = await esbuild.context(options);
-    return ctx.watch();
-};
+    await ctx.watch();
+}
+
+(async () => {
+    if (process.argv.includes("--watch")) {
+        await watch();
+    } 
+    else {
+        await build();
+    }
+})();

@@ -12,19 +12,14 @@ const options: esbuild.BuildOptions = {
     bundle: true,
 };
 
-export const build = async () => {
+async function build() {
     await esbuild.build({
         ...options,
         minify: true,
         entryNames: "[name]-[hash]",
         assetNames: "[name]-[hash]",
     });
-};
-
-export const watch = async () => {
-    const ctx = await esbuild.context(options);
-    return ctx.watch();
-};
+}
 `;
 
 const reactContent = `
@@ -52,39 +47,33 @@ const options: esbuild.BuildOptions = {
     ],
 };
 
-export const build = async () => {
+async function build() {
     await esbuild.build({
         ...options,
         minify: true,
     });
-};
-
-export const watch = async () => {
-    const ctx = await esbuild.context(options);
-    return ctx.watch();
-};
+}
 `;
 
 export const generateEsbuild = (config: Config) => {
+    const trailingContent = `
+async function watch() {
+    const ctx = await esbuild.context(options);
+    await ctx.watch();
+}
+
+(async () => {
+    if (process.argv.includes("--watch")) {
+        await watch();
+    } 
+    else {
+        await build();
+    }
+})();
+`;
+
     const content = config.react ? reactContent : libContent;
+    const fullContent = `${content}${trailingContent}`;
 
-    const buildContent = `
-import { build } from "./esbuild";
-
-(async () => {
-    await build();
-})();
-`;
-
-    const watchContent = `
-import { watch } from "./esbuild";
-
-(async () => {
-    await watch();
-})();
-`;
-
-    writeFile(config, "esbuild.ts", content.trimStart());
-    writeFile(config, "esbuild-build.ts", buildContent.trimStart());
-    writeFile(config, "esbuild-watch.ts", watchContent.trimStart());
+    writeFile(config, "esbuild.ts", fullContent);
 };

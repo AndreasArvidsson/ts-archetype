@@ -1,3 +1,4 @@
+
 import esbuild from "esbuild";
 import htmlPlugin from "html-esbuild-plugin";
 
@@ -22,14 +23,23 @@ const options: esbuild.BuildOptions = {
     ],
 };
 
-export const build = async () => {
+async function build() {
     await esbuild.build({
         ...options,
         minify: true,
     });
-};
+}
 
-export const watch = async () => {
+async function watch() {
     const ctx = await esbuild.context(options);
-    return ctx.watch();
-};
+    await ctx.watch();
+}
+
+(async () => {
+    if (process.argv.includes("--watch")) {
+        await watch();
+    } 
+    else {
+        await build();
+    }
+})();

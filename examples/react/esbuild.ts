@@ -1,4 +1,3 @@
-
 import esbuild from "esbuild";
 import htmlPlugin from "html-esbuild-plugin";
 

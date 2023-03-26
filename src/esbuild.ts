@@ -75,5 +75,5 @@ async function watch() {
     const content = config.react ? reactContent : libContent;
     const fullContent = `${content}${trailingContent}`;
 
-    writeFile(config, "esbuild.ts", fullContent);
+    writeFile(config, "esbuild.ts", fullContent.trimStart());
 };

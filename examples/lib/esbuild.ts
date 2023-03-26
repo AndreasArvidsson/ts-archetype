@@ -1,4 +1,3 @@
-
 import esbuild from "esbuild";
 
 const options: esbuild.BuildOptions = {

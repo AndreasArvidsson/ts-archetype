@@ -5,11 +5,7 @@
     "description": "TODO",
     "author": "Andreas Arvidsson",
     "license": "MIT",
-    "main": "lib/index.js",
-    "types": "lib/types/index.d.ts",
-    "files": [
-        "lib/*"
-    ],
+    "private": true,
     "homepage": "https://github.com/AndreasArvidsson/example-project",
     "repository": {
         "type": "git",

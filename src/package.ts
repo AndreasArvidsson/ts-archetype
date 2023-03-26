@@ -44,9 +44,10 @@ export const generatePackage = (config: Config) => {
         description: "TODO",
         author: author,
         license: "MIT",
-        main: "lib/index.js",
-        types: "lib/types/index.d.ts",
-        files: ["lib/*"],
+        private: react ? true : undefined,
+        main: react ? undefined : "lib/index.js",
+        types: react ? undefined : "lib/types/index.d.ts",
+        files: react ? undefined : ["lib/*"],
         homepage: `${repository}/${projectName}`,
         repository: {
             type: "git",

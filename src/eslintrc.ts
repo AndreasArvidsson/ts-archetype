@@ -48,7 +48,6 @@ export const generateEslintrc = (config: Config) => {
         parser: "@typescript-eslint/parser",
         plugins: ["@typescript-eslint"],
         root: true,
-        ignorePatterns: ["/*", "!src"],
         parserOptions: {
             project: true,
             sourceType: "module",

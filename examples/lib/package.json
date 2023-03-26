@@ -23,8 +23,8 @@
         "test": "tsx test/runTests.ts",
         "build": "tsc -p . && tsx esbuild.ts",
         "watch": "tsx esbuild.ts --watch",
-        "lint": "eslint .",
-        "prettier": "prettier --write ."
+        "lint": "eslint src",
+        "prettier": "prettier --write src"
     },
     "dependencies": {},
     "devDependencies": {

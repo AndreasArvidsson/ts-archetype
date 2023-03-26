@@ -13,9 +13,9 @@
         "url": "https://github.com/AndreasArvidsson/ts-archetype/issues"
     },
     "scripts": {
-        "generate": "tsx src/index.ts && npm run prettier",
-        "generate-examples": "tsx src/generateExamples.ts && npm run prettier",
-        "lint": "tsc -p . && eslint .",
+        "generate": "tsx src/index.ts && prettier --write generated",
+        "generate-examples": "tsx src/generateExamples.ts && prettier --write examples",
+        "lint": "tsc -p . && eslint src",
         "prettier": "prettier --write ."
     },
     "devDependencies": {

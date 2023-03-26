@@ -1,7 +1,9 @@
-import { author, displayName, projectName, react, repository } from "./config";
-import { generate } from "./generate";
+/* eslint-disable @typescript-eslint/naming-convention */
 
-export const generatePackage = () => {
+import { Config } from "./config";
+import { writeFile } from "./util";
+
+export const generatePackage = (config: Config) => {
     const reactDependencies = {
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -11,8 +13,10 @@ export const generatePackage = () => {
     const reactDevDependencies = {
         "@types/react": "^18.0.29",
         "@types/react-dom": "^18.0.11",
-        "html-esbuild-plugin": "^0.1.0",
+        "html-esbuild-plugin": "^0.2.0",
     };
+
+    const { projectName, displayName, author, repository, react } = config;
 
     const content = {
         name: projectName,
@@ -35,7 +39,8 @@ export const generatePackage = () => {
         scripts: {
             start: "tsx src/index.ts",
             test: "tsx test/runTests.ts",
-            build: "tsc -p . && tsx esbuild.ts",
+            build: "tsc -p . && tsx esbuild-build.ts",
+            watch: "tsx esbuild-watch.ts",
             lint: "eslint . --ext .ts",
         },
         dependencies: react ? reactDependencies : {},
@@ -56,5 +61,5 @@ export const generatePackage = () => {
         },
     };
 
-    generate("package.json", content);
+    writeFile(config, "package.json", content);
 };

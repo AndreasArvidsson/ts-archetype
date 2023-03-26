@@ -1,21 +1,28 @@
-import fs from "node:fs";
-import path from "node:path";
+import { Config } from "./config";
+import { generateEsbuild } from "./esbuild";
+import { generateEslintrc } from "./eslintrc";
+import { makeGenerateDir } from "./util";
+import { generateGitignore } from "./gitignore";
+import { generateLicense } from "./license";
+import { generatePackage } from "./package";
+import { generatePrettierrc } from "./prettierrc";
+import { generateReadme } from "./readme";
+import { generateSrc } from "./src";
+import { generateTest } from "./test";
+import { generateTsconfig } from "./tsconfig";
 
-export const generateDir = path.join(__dirname, "../generated");
-export const resourcesDir = path.join(__dirname, "../resources");
+export const generate = (config: Config) => {
+    console.log("Generating files");
 
-export const makeGenerateDir = () => {
-    fs.rmSync(generateDir, { recursive: true, force: true });
-    fs.mkdirSync(generateDir, { recursive: true });
-};
-
-export const generate = (filename: string, content: string | object) => {
-    content =
-        typeof content === "string"
-            ? content
-            : JSON.stringify(content, null, 4);
-
-    const fullPath = path.join(generateDir, filename);
-
-    fs.writeFileSync(fullPath, content);
+    makeGenerateDir(config);
+    generateReadme(config);
+    generateGitignore(config);
+    generateLicense(config);
+    generatePackage(config);
+    generateEsbuild(config);
+    generateTsconfig(config);
+    generatePrettierrc(config);
+    generateEslintrc(config);
+    generateSrc(config);
+    generateTest(config);
 };

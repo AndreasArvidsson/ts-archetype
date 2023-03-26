@@ -1,56 +1,90 @@
-import { react } from "./config";
-import { generate } from "./generate";
+import { Config } from "./config";
+import { writeFile } from "./util";
 
-export const generateEsbuild = () => {
-    const options = {
-        entryPoints: ["src/index.ts"],
-        outdir: react ? "out" : "lib",
-        platform: react ? "browser" : "node",
-        packages: react ? undefined : "external",
-        bundle: true,
+const libContent = `
+import esbuild from "esbuild";
+
+const options: esbuild.BuildOptions = {
+    entryPoints: ["src/index.ts"],
+    outdir: "lib",
+    platform: "node",
+    packages: "external",
+    bundle: true,
+};
+
+export const build = async () => {
+    await esbuild.build({
+        ...options,
         minify: true,
-        entryNames: react ? "[name]-[hash]" : undefined,
-        assetNames: react ? "[name]-[hash]" : undefined,
-        jsx: react ? "automatic" : undefined,
-        loader: react
-            ? {
-                  ".png": "file",
-                  ".jpg": "file",
-                  ".svg": "file",
-                  ".gif": "file",
-                  ".ico": "file",
-              }
-            : undefined,
-    };
+        entryNames: "[name]-[hash]",
+        assetNames: "[name]-[hash]",
+    });
+};
 
-    type Key = keyof typeof options;
+export const watch = async () => {
+    const ctx = await esbuild.context(options);
+    return ctx.watch();
+};
+`;
 
-    const optionLines = Object.keys(options)
-        .filter((key) => options[key as Key] != null)
-        .map((key) => {
-            const value = options[key as Key];
-            return `        ${key}: ${JSON.stringify(value)},`;
-        });
+const reactContent = `
+import esbuild from "esbuild";
+import htmlPlugin from "html-esbuild-plugin";
 
-    if (react) {
-        optionLines.push(`        plugins: [
-            htmlPlugin({
-                template: "./src/index.html",
-                title: "My title",
-            }),
-        ]`);
-    }
+const options: esbuild.BuildOptions = {
+    entryPoints: ["src/index.ts"],
+    outdir: "out",
+    platform: "browser",
+    jsx: "automatic",
+    bundle: true,
+    loader: {
+        ".png": "file",
+        ".jpg": "file",
+        ".svg": "file",
+        ".gif": "file",
+        ".ico": "file",
+    },
+    plugins: [
+        htmlPlugin({
+            template: "./src/index.html",
+            title: "My title",
+        }),
+    ],
+};
 
-    const content = `
-import { build } from "esbuild";
-${react ? 'import htmlPlugin from "html-esbuild-plugin";' : ""}
+export const build = async () => {
+    await esbuild.build({
+        ...options,
+        minify: true,
+    });
+};
+
+export const watch = async () => {
+    const ctx = await esbuild.context(options);
+    return ctx.watch();
+};
+`;
+
+export const generateEsbuild = (config: Config) => {
+    const content = config.react ? reactContent : libContent;
+
+    const buildContent = `
+import { build } from "./esbuild";
 
 (async () => {
-    await build({
-${optionLines.join("\n")}
-    });
+    await build();
 })();
 `;
 
-    generate("esbuild.ts", content.trimStart());
+    const watchContent = `
+import { watch } from "./esbuild";
+
+(async () => {
+    await watch();
+})();
+`;
+
+    writeFile(config, "esbuild.ts", content.trimStart());
+    writeFile(config, "esbuild-build.ts", buildContent.trimStart());
+    writeFile(config, "esbuild-watch.ts", watchContent.trimStart());
 };

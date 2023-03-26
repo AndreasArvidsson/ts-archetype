@@ -1,7 +1,7 @@
 {
     "name": "ts-archetype",
-    "displayName": "TS-Archetype",
     "version": "0.0.1",
+    "private": true,
     "author": "Andreas Arvidsson",
     "license": "MIT",
     "homepage": "https://github.com/AndreasArvidsson/ts-archetype",
@@ -13,10 +13,17 @@
         "url": "https://github.com/AndreasArvidsson/ts-archetype/issues"
     },
     "scripts": {
-        "generate": "tsx src/index.ts"
+        "generate": "tsx src/index.ts",
+        "generate-examples": "tsx src/generateExamples.ts",
+        "lint": "tsc -p . && eslint . --ext .ts"
     },
     "devDependencies": {
+        "@types/mocha": "^10.0.1",
         "@types/node": "^18.15.0",
+        "@typescript-eslint/eslint-plugin": "^5.56.0",
+        "@typescript-eslint/parser": "^5.56.0",
+        "eslint": "^8.36.0",
+        "prettier": "^2.8.7",
         "tsx": "^3.12.6",
         "typescript": "^5.0.2"
     }

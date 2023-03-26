@@ -1,0 +1,43 @@
+{
+    "name": "example-project",
+    "displayName": "Example project",
+    "version": "0.0.1",
+    "description": "TODO",
+    "author": "Andreas Arvidsson",
+    "license": "MIT",
+    "main": "lib/index.js",
+    "types": "lib/types/index.d.ts",
+    "files": [
+        "lib/*"
+    ],
+    "homepage": "https://github.com/AndreasArvidsson/example-project",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AndreasArvidsson/example-project"
+    },
+    "bugs": {
+        "url": "https://github.com/AndreasArvidsson/example-project/issues"
+    },
+    "scripts": {
+        "start": "tsx src/index.ts",
+        "test": "tsx test/runTests.ts",
+        "build": "tsc -p . && tsx esbuild-build.ts",
+        "watch": "tsx esbuild-watch.ts",
+        "lint": "eslint . --ext .ts"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@types/glob": "^8.1.0",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^18.15.9",
+        "@typescript-eslint/eslint-plugin": "^5.56.0",
+        "@typescript-eslint/parser": "^5.56.0",
+        "esbuild": "^0.17.13",
+        "eslint": "^8.36.0",
+        "glob": "^9.3.2",
+        "mocha": "^10.2.0",
+        "prettier": "^2.8.7",
+        "tsx": "^3.12.6",
+        "typescript": "^5.0.2"
+    }
+}

@@ -1,7 +1,10 @@
-import { react } from "./config";
-import { generate } from "./generate";
+/* eslint-disable @typescript-eslint/naming-convention */
 
-export const generateEslintrc = () => {
+import { Config } from "./config";
+import { writeFile } from "./util";
+
+export const generateEslintrc = (config: Config) => {
+    const { react } = config;
     const ecmaFeatures = react ? { jsx: true } : undefined;
     const settings = react ? { react: { version: "detect" } } : undefined;
 
@@ -9,7 +12,7 @@ export const generateEslintrc = () => {
         extends: [
             "eslint:recommended",
             "plugin:@typescript-eslint/recommended",
-            "plugin:@typescript-eslint/reommended-requiring-type-checking",
+            "plugin:@typescript-eslint/recommended-requiring-type-checking",
         ],
         parser: "@typescript-eslint/parser",
         plugins: ["@typescript-eslint"],
@@ -47,5 +50,5 @@ export const generateEslintrc = () => {
         content.extends.splice(1, 0, "plugin:react/recommended");
     }
 
-    generate(".eslintrc.json", content);
+    writeFile(config, ".eslintrc.json", content);
 };

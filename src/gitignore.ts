@@ -1,9 +1,10 @@
-import { generate } from "./generate";
+import { Config } from "./config";
+import { writeFile } from "./util";
 
-export const generateGitignore = () => {
-  const content = `
+export const generateGitignore = (config: Config) => {
+    const content = `
 node_modules
 `;
 
-  generate(".gitignore", content.trimStart());
+    writeFile(config, ".gitignore", content.trimStart());
 };

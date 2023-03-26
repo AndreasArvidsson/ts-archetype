@@ -1,7 +1,8 @@
-import { react } from "./config";
-import { generate } from "./generate";
+import { Config } from "./config";
+import { writeFile } from "./util";
 
-export const generateTsconfig = () => {
+export const generateTsconfig = (config: Config) => {
+    const { react } = config;
     const target = react ? "ES6" : "ESNext";
 
     const content = {
@@ -24,5 +25,5 @@ export const generateTsconfig = () => {
         include: ["src"],
     };
 
-    generate("tsconfig.json", content);
+    writeFile(config, "tsconfig.json", content);
 };

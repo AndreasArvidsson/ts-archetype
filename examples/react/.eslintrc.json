@@ -1,6 +1,7 @@
 {
     "extends": [
         "eslint:recommended",
+        "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],
@@ -11,24 +12,23 @@
     "root": true,
     "parserOptions": {
         "project": true,
+        "sourceType": "module",
         "ecmaVersion": 2022,
-        "sourceType": "module"
+        "ecmaFeatures": {
+            "jsx": true
+        }
     },
-    "ignorePatterns": [
-        "resources/*"
-    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "rules": {
         "@typescript-eslint/naming-convention": "warn",
         "@typescript-eslint/semi": "warn",
         "@typescript-eslint/no-non-null-assertion": "off",
         "curly": "error",
         "no-throw-literal": "error",
-        "no-unused-vars": [
-            "error",
-            {
-                "args": "none"
-            }
-        ],
         "no-warning-comments": [
             "warn",
             {

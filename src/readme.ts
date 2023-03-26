@@ -1,10 +1,10 @@
-import { displayName } from "./config";
-import { generate } from "./generate";
+import { Config } from "./config";
+import { writeFile } from "./util";
 
-export const generateReadme = () => {
-  const content = `
-# ${displayName}
+export const generateReadme = (config: Config) => {
+    const content = `
+# ${config.displayName}
 `;
 
-  generate("README.md", content.trimStart());
+    writeFile(config, "README.md", content.trimStart());
 };

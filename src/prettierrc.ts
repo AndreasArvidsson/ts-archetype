@@ -1,9 +1,10 @@
-import { generate } from "./generate";
+import { Config } from "./config";
+import { writeFile } from "./util";
 
-export const generatePrettierrc = () => {
+export const generatePrettierrc = (config: Config) => {
     const content = {
         tabWidth: 4,
     };
 
-    generate(".prettierrc", content);
+    writeFile(config, ".prettierrc", content);
 };

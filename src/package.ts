@@ -41,7 +41,7 @@ export const generatePackage = (config: Config) => {
         name: projectName,
         displayName: displayName,
         version: "0.0.1",
-        description: "TODO",
+        description: react ? undefined : "TODO",
         author: author,
         license: "MIT",
         private: react ? true : undefined,

@@ -2,7 +2,6 @@
     "name": "example-project",
     "displayName": "Example project",
     "version": "0.0.1",
-    "description": "TODO",
     "author": "Andreas Arvidsson",
     "license": "MIT",
     "private": true,

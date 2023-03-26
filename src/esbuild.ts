@@ -9,13 +9,18 @@ export const generateEsbuild = () => {
         packages: react ? undefined : "external",
         bundle: true,
         minify: true,
+        entryNames: react ? "[name]-[hash]" : undefined,
+        assetNames: react ? "[name]-[hash]" : undefined,
         jsx: react ? "automatic" : undefined,
         loader: react
             ? {
                   ".png": "file",
+                  ".jpg": "file",
+                  ".svg": "file",
+                  ".gif": "file",
+                  ".ico": "file",
               }
             : undefined,
-        plugins: [],
     };
 
     type Key = keyof typeof options;
@@ -24,15 +29,26 @@ export const generateEsbuild = () => {
         .filter((key) => options[key as Key] != null)
         .map((key) => {
             const value = options[key as Key];
-            return `    ${key}: ${JSON.stringify(value)},`;
+            return `        ${key}: ${JSON.stringify(value)},`;
         });
-    const optionsStr = `{\n${optionLines.join("\n")}\n}`;
+
+    if (react) {
+        optionLines.push(`        plugins: [
+            htmlPlugin({
+                template: "./src/index.html",
+                title: "My title",
+            }),
+        ]`);
+    }
 
     const content = `
 import { build } from "esbuild";
+${react ? 'import htmlPlugin from "html-esbuild-plugin";' : ""}
 
 (async () => {
-    await build(${optionsStr});
+    await build({
+${optionLines.join("\n")}
+    });
 })();
 `;
 

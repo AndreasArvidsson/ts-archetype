@@ -11,6 +11,7 @@ export const generatePackage = () => {
     const reactDevDependencies = {
         "@types/react": "^18.0.29",
         "@types/react-dom": "^18.0.11",
+        "html-esbuild-plugin": "^0.1.0",
     };
 
     const content = {

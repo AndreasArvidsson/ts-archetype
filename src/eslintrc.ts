@@ -8,15 +8,48 @@ export const generateEslintrc = (config: Config) => {
     const ecmaFeatures = react ? { jsx: true } : undefined;
     const settings = react ? { react: { version: "detect" } } : undefined;
 
+    const tsxOverrides = [
+        {
+            files: ["**/*.tsx"],
+            rules: {
+                "@typescript-eslint/naming-convention": [
+                    "error",
+                    {
+                        selector: "default",
+                        format: ["camelCase"],
+                        leadingUnderscore: "allow",
+                        trailingUnderscore: "allow",
+                    },
+                    {
+                        selector: "variable",
+                        format: ["camelCase", "UPPER_CASE"],
+                        leadingUnderscore: "allow",
+                        trailingUnderscore: "allow",
+                    },
+                    {
+                        selector: "typeLike",
+                        format: ["PascalCase"],
+                    },
+                    {
+                        selector: "function",
+                        format: ["camelCase", "PascalCase"],
+                    },
+                ],
+            },
+        },
+    ];
+
     const content = {
         extends: [
             "eslint:recommended",
             "plugin:@typescript-eslint/recommended",
             "plugin:@typescript-eslint/recommended-requiring-type-checking",
+            "plugin:prettier/recommended",
         ],
         parser: "@typescript-eslint/parser",
         plugins: ["@typescript-eslint"],
         root: true,
+        ignorePatterns: ["/*", "!src"],
         parserOptions: {
             project: true,
             sourceType: "module",
@@ -44,10 +77,16 @@ export const generateEslintrc = (config: Config) => {
                 },
             ],
         },
+        overrides: react ? tsxOverrides : undefined,
     };
 
     if (react) {
-        content.extends.splice(1, 0, "plugin:react/recommended");
+        content.extends.splice(
+            1,
+            0,
+            "plugin:react/recommended",
+            "plugin:react/jsx-runtime"
+        );
     }
 
     writeFile(config, ".eslintrc.json", content);

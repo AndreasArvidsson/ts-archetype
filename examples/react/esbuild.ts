@@ -37,8 +37,7 @@ async function watch() {
 (async () => {
     if (process.argv.includes("--watch")) {
         await watch();
-    } 
-    else {
+    } else {
         await build();
     }
 })();

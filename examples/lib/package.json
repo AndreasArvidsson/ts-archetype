@@ -23,7 +23,7 @@
         "test": "tsx test/runTests.ts",
         "build": "tsc -p . && tsx esbuild.ts",
         "watch": "tsx esbuild.ts --watch",
-        "lint": "eslint . --ext .ts"
+        "lint": "eslint ."
     },
     "dependencies": {},
     "devDependencies": {
@@ -34,6 +34,8 @@
         "@typescript-eslint/parser": "^5.56.0",
         "esbuild": "^0.17.13",
         "eslint": "^8.36.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
         "glob": "^9.3.2",
         "mocha": "^10.2.0",
         "prettier": "^2.8.7",

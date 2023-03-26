@@ -1,5 +1,4 @@
-declare module "*.png";
-declare module "*.jpg";
-declare module "*.svg";
-declare module "*.gif";
-declare module "*.ico";
+declare module "*.png" {
+    const value: string;
+    export = value;
+}

@@ -30,3 +30,13 @@ export const writeFile = (
 
     fs.writeFileSync(fullPath, content);
 };
+
+export const sortObject = (obj: { [key: string]: string }) => {
+    const res: { [key: string]: string } = {};
+    const entries = Object.entries(obj);
+    entries.sort(([keyA], [keyB]) => keyA.localeCompare(keyB));
+    for (const [key, val] of entries) {
+        res[key] = val;
+    }
+    return res;
+};

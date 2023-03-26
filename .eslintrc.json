@@ -15,7 +15,8 @@
         "sourceType": "module"
     },
     "ignorePatterns": [
-        "resources/*"
+        "/*",
+        "!src"
     ],
     "rules": {
         "@typescript-eslint/naming-convention": "warn",

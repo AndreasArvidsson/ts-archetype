@@ -60,7 +60,6 @@ export const generateEslintrc = (config: Config) => {
         rules: {
             "@typescript-eslint/naming-convention": "error",
             "@typescript-eslint/semi": "warn",
-            "@typescript-eslint/no-non-null-assertion": "off",
             "curly": "error",
             "no-throw-literal": "error",
             "no-warning-comments": [

@@ -4,18 +4,12 @@
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:prettier/recommended"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],
     "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint"
-    ],
+    "plugins": ["@typescript-eslint"],
     "root": true,
-    "ignorePatterns": [
-        "/*",
-        "!src"
-    ],
+    "ignorePatterns": ["/*", "!src"],
     "parserOptions": {
         "project": true,
         "sourceType": "module",
@@ -37,9 +31,7 @@
         "no-warning-comments": [
             "warn",
             {
-                "terms": [
-                    "TODO"
-                ]
+                "terms": ["TODO"]
             }
         ],
         "eqeqeq": [
@@ -52,41 +44,29 @@
     },
     "overrides": [
         {
-            "files": [
-                "**/*.tsx"
-            ],
+            "files": ["**/*.tsx"],
             "rules": {
                 "@typescript-eslint/naming-convention": [
                     "error",
                     {
                         "selector": "default",
-                        "format": [
-                            "camelCase"
-                        ],
+                        "format": ["camelCase"],
                         "leadingUnderscore": "allow",
                         "trailingUnderscore": "allow"
                     },
                     {
                         "selector": "variable",
-                        "format": [
-                            "camelCase",
-                            "UPPER_CASE"
-                        ],
+                        "format": ["camelCase", "UPPER_CASE"],
                         "leadingUnderscore": "allow",
                         "trailingUnderscore": "allow"
                     },
                     {
                         "selector": "typeLike",
-                        "format": [
-                            "PascalCase"
-                        ]
+                        "format": ["PascalCase"]
                     },
                     {
                         "selector": "function",
-                        "format": [
-                            "camelCase",
-                            "PascalCase"
-                        ]
+                        "format": ["camelCase", "PascalCase"]
                     }
                 ]
             }

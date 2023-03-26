@@ -13,17 +13,16 @@
         "url": "https://github.com/AndreasArvidsson/ts-archetype/issues"
     },
     "scripts": {
-        "generate": "tsx src/index.ts",
-        "generate-examples": "tsx src/generateExamples.ts",
-        "lint": "tsc -p . && eslint ."
+        "generate": "tsx src/index.ts && npm run prettier",
+        "generate-examples": "tsx src/generateExamples.ts && npm run prettier",
+        "lint": "tsc -p . && eslint .",
+        "prettier": "prettier --write ."
     },
     "devDependencies": {
         "@types/mocha": "^10.0.1",
         "@types/node": "^18.15.0",
         "@typescript-eslint/eslint-plugin": "^5.56.0",
         "@typescript-eslint/parser": "^5.56.0",
-        "eslint-config-prettier": "^8.8.0",
-        "eslint-plugin-prettier": "^4.2.1",
         "eslint": "^8.36.0",
         "prettier": "^2.8.7",
         "tsx": "^3.12.6",

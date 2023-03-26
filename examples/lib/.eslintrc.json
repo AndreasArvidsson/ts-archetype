@@ -2,18 +2,12 @@
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "plugin:prettier/recommended"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],
     "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint"
-    ],
+    "plugins": ["@typescript-eslint"],
     "root": true,
-    "ignorePatterns": [
-        "/*",
-        "!src"
-    ],
+    "ignorePatterns": ["/*", "!src"],
     "parserOptions": {
         "project": true,
         "sourceType": "module",
@@ -27,9 +21,7 @@
         "no-warning-comments": [
             "warn",
             {
-                "terms": [
-                    "TODO"
-                ]
+                "terms": ["TODO"]
             }
         ],
         "eqeqeq": [

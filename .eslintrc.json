@@ -5,19 +5,14 @@
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],
     "parser": "@typescript-eslint/parser",
-    "plugins": [
-        "@typescript-eslint"
-    ],
+    "plugins": ["@typescript-eslint"],
     "root": true,
     "parserOptions": {
         "project": true,
         "ecmaVersion": 2022,
         "sourceType": "module"
     },
-    "ignorePatterns": [
-        "/*",
-        "!src"
-    ],
+    "ignorePatterns": ["/*", "!src"],
     "rules": {
         "@typescript-eslint/naming-convention": "warn",
         "@typescript-eslint/semi": "warn",
@@ -33,9 +28,7 @@
         "no-warning-comments": [
             "warn",
             {
-                "terms": [
-                    "TODO"
-                ]
+                "terms": ["TODO"]
             }
         ],
         "eqeqeq": [

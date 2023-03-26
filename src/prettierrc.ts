@@ -6,5 +6,5 @@ export const generatePrettierrc = (config: Config) => {
         tabWidth: 4,
     };
 
-    writeFile(config, ".prettierrc", content);
+    writeFile(config, ".prettierrc.json", content);
 };

@@ -45,9 +45,10 @@ export const generateEslintrc = (config: Config) => {
             "plugin:@typescript-eslint/recommended",
             "plugin:@typescript-eslint/recommended-requiring-type-checking",
         ],
+        root: true,
         parser: "@typescript-eslint/parser",
         plugins: ["@typescript-eslint"],
-        root: true,
+        "ignorePatterns": ["/*", "!src"],
         parserOptions: {
             project: true,
             sourceType: "module",

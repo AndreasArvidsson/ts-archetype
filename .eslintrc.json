@@ -14,21 +14,15 @@
     },
     "ignorePatterns": ["/*", "!src"],
     "rules": {
-        "@typescript-eslint/naming-convention": "warn",
+        "no-warning-comments": "warn",
         "@typescript-eslint/semi": "warn",
-        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/naming-convention": "error",
         "curly": "error",
         "no-throw-literal": "error",
         "no-unused-vars": [
             "error",
             {
                 "args": "none"
-            }
-        ],
-        "no-warning-comments": [
-            "warn",
-            {
-                "terms": ["TODO"]
             }
         ],
         "eqeqeq": [

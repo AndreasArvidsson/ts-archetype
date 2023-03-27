@@ -56,17 +56,12 @@ export const generateEslintrc = (config: Config) => {
         },
         settings,
         rules: {
-            "@typescript-eslint/naming-convention": "error",
+            "no-warning-comments": "warn",
             "@typescript-eslint/semi": "warn",
+            "@typescript-eslint/naming-convention": "error",
             "curly": "error",
             "no-throw-literal": "error",
-            "no-warning-comments": [
-                "warn",
-                {
-                    terms: ["TODO"],
-                },
-            ],
-            eqeqeq: [
+            "eqeqeq": [
                 "error",
                 "always",
                 {

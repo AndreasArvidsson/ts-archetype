@@ -9,14 +9,14 @@ export const generatePackage = (config: Config) => {
     const reactDependencies = {
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-router-dom": "^6.9.0",
+        "react-router-dom": "^6.9.0"
     };
 
     const reactDevDependencies = {
         "@types/react": "^18.0.29",
         "@types/react-dom": "^18.0.11",
         "html-esbuild-plugin": "^0.2.0",
-        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-react": "^7.32.2"
     };
 
     const dependencies = react ? reactDependencies : {};
@@ -34,7 +34,7 @@ export const generatePackage = (config: Config) => {
         "mocha": "^10.2.0",
         "prettier": "^2.8.7",
         "tsx": "^3.12.6",
-        "typescript": "^5.0.2",
+        "typescript": "^5.0.2"
     };
 
     const content = {
@@ -51,10 +51,10 @@ export const generatePackage = (config: Config) => {
         homepage: `${repository}/${projectName}`,
         repository: {
             type: "git",
-            url: `${repository}/${projectName}`,
+            url: `${repository}/${projectName}`
         },
         bugs: {
-            url: `${repository}/${projectName}/issues`,
+            url: `${repository}/${projectName}/issues`
         },
         scripts: {
             start: "tsx src/index.ts",
@@ -62,10 +62,10 @@ export const generatePackage = (config: Config) => {
             build: "tsc -p . && tsx esbuild.ts",
             watch: "tsx esbuild.ts --watch",
             lint: "eslint src",
-            prettier: "prettier --write src",
+            prettier: "prettier --write ."
         },
         dependencies: {},
-        devDependencies: {},
+        devDependencies: {}
     };
 
     content.dependencies = sortObject(dependencies);

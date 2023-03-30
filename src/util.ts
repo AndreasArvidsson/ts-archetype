@@ -16,15 +16,8 @@ export const makeGenerateDir = (config: Config) => {
     fs.mkdirSync(generateDir(config), { recursive: true });
 };
 
-export const writeFile = (
-    config: Config,
-    filename: string,
-    content: string | object
-) => {
-    content =
-        typeof content === "string"
-            ? content
-            : JSON.stringify(content, null, 4);
+export const writeFile = (config: Config, filename: string, content: string | object) => {
+    content = typeof content === "string" ? content : JSON.stringify(content, null, 4);
 
     const fullPath = path.join(generateDir(config), filename);
 

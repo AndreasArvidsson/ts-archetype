@@ -19,7 +19,7 @@
         "build": "tsc -p . && tsx esbuild.ts",
         "watch": "tsx esbuild.ts --watch",
         "lint": "eslint src",
-        "prettier": "prettier --write src"
+        "prettier": "prettier --write ."
     },
     "dependencies": {
         "react": "^18.2.0",

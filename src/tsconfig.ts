@@ -20,9 +20,9 @@ export const generateTsconfig = (config: Config) => {
             noEmitOnError: react ? undefined : true,
             strict: true,
             forceConsistentCasingInFileNames: true,
-            jsx: react ? "react-jsx" : undefined,
+            jsx: react ? "react-jsx" : undefined
         },
-        include: ["src"],
+        include: ["src"]
     };
 
     writeFile(config, "tsconfig.json", content);

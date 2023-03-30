@@ -7,6 +7,6 @@ export const generateTest = (config: Config) => {
     const source = path.join(resourcesDir, "test");
     const destination = path.join(generateDir(config), "test");
     fs.cpSync(source, destination, {
-        recursive: true,
+        recursive: true
     });
 };

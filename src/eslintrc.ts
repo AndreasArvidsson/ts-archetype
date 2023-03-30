@@ -18,32 +18,32 @@ export const generateEslintrc = (config: Config) => {
                         selector: "default",
                         format: ["camelCase"],
                         leadingUnderscore: "allow",
-                        trailingUnderscore: "allow",
+                        trailingUnderscore: "allow"
                     },
                     {
                         selector: "variable",
                         format: ["camelCase", "UPPER_CASE"],
                         leadingUnderscore: "allow",
-                        trailingUnderscore: "allow",
+                        trailingUnderscore: "allow"
                     },
                     {
                         selector: "typeLike",
-                        format: ["PascalCase"],
+                        format: ["PascalCase"]
                     },
                     {
                         selector: "function",
-                        format: ["camelCase", "PascalCase"],
-                    },
-                ],
-            },
-        },
+                        format: ["camelCase", "PascalCase"]
+                    }
+                ]
+            }
+        }
     ];
 
     const content = {
         extends: [
             "eslint:recommended",
             "plugin:@typescript-eslint/recommended",
-            "plugin:@typescript-eslint/recommended-requiring-type-checking",
+            "plugin:@typescript-eslint/recommended-requiring-type-checking"
         ],
         root: true,
         parser: "@typescript-eslint/parser",
@@ -53,7 +53,7 @@ export const generateEslintrc = (config: Config) => {
             project: true,
             sourceType: "module",
             ecmaVersion: 2022,
-            ecmaFeatures,
+            ecmaFeatures
         },
         settings,
         rules: {
@@ -66,20 +66,15 @@ export const generateEslintrc = (config: Config) => {
                 "error",
                 "always",
                 {
-                    null: "never",
-                },
-            ],
+                    null: "never"
+                }
+            ]
         },
-        overrides: react ? tsxOverrides : undefined,
+        overrides: react ? tsxOverrides : undefined
     };
 
     if (react) {
-        content.extends.splice(
-            1,
-            0,
-            "plugin:react/recommended",
-            "plugin:react/jsx-runtime"
-        );
+        content.extends.splice(1, 0, "plugin:react/recommended", "plugin:react/jsx-runtime");
     }
 
     writeFile(config, ".eslintrc.json", content);

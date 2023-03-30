@@ -13,5 +13,5 @@ export const config: Config = {
     projectName: "example-project",
     displayName: "Example project",
     outDir: "generated",
-    react: true,
+    react: true
 };

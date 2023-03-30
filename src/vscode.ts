@@ -5,7 +5,7 @@ import { generateDir, writeFile } from "./util";
 
 export const generateVscode = (config: Config) => {
     const content = {
-        ["editor.defaultFormatter"]: "esbenp.prettier-vscode",
+        ["editor.defaultFormatter"]: "esbenp.prettier-vscode"
     };
 
     fs.mkdirSync(path.join(generateDir(config), ".vscode"));

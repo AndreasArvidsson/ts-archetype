@@ -9,7 +9,7 @@
     "plugins": ["@typescript-eslint"],
     "ignorePatterns": ["/*", "!src"],
     "parserOptions": {
-        "project": true,
+        "project": "./tsconfig.json",
         "sourceType": "module",
         "ecmaVersion": 2022
     },

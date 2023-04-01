@@ -48,9 +48,9 @@ export const generateEslintrc = (config: Config) => {
         root: true,
         parser: "@typescript-eslint/parser",
         plugins: ["@typescript-eslint"],
-        "ignorePatterns": ["/*", "!src"],
+        ignorePatterns: ["/*", "!src"],
         parserOptions: {
-            project: true,
+            project: "./tsconfig.json",
             sourceType: "module",
             ecmaVersion: 2022,
             ecmaFeatures

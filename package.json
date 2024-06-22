@@ -1,6 +1,6 @@
 {
     "name": "ts-archetype",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "author": "Andreas Arvidsson",
     "license": "MIT",
     "main": "./lib/index.js",

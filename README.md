@@ -8,9 +8,17 @@ Uses [file-updater](https://www.npmjs.com/package/file-updater) to maintain proj
 
 Run `npm run file-updater`
 
-```ts
-// File: `.file-updater.mjs`
+File: `package.json`
 
+```json
+"scripts": {
+    "file-updater": "file-updater"
+}
+```
+
+File: `.file-updater.mjs`
+
+```ts
 const config = {
     author: "Andreas Arvidsson",
     authorRepository: "https://github.com/AndreasArvidsson",

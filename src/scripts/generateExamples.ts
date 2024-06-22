@@ -19,7 +19,7 @@ export const defaultConfig: Config = {
     author: "Andreas Arvidsson",
     authorRepository: "https://github.com/AndreasArvidsson",
     projectName: "example-project",
-    displayName: "Example project"
+    displayName: "Example project",
 };
 
 const examplesDir = path.join(__dirname, "../../examples");
@@ -42,7 +42,7 @@ async function generateExample(isReact: boolean) {
             [".prettierignore"]: updatePrettierignore(config),
             [".eslintrc.json"]: updateEslintrc(config),
             [".vscode/settings.json"]: updateVscodeSettings(config),
-            ...(isReact ? { ["esbuild.ts"]: updateEsbuild(config) } : {})
+            ...(isReact ? { ["esbuild.ts"]: updateEsbuild(config) } : {}),
         },
         { workspaceDir }
     );

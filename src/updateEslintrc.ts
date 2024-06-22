@@ -54,7 +54,7 @@ export const updateEslintrc = (config: Config) => {
         // Require the use of === and !==
         "eqeqeq": ["error", "always", { "null": "never" }],
         // Disallow unused variables.
-        "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
+        "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
     };
 
     const tsxOverrides: Override[] = [
@@ -67,32 +67,32 @@ export const updateEslintrc = (config: Config) => {
                         selector: "default",
                         format: ["camelCase"],
                         leadingUnderscore: "allow",
-                        trailingUnderscore: "allow"
+                        trailingUnderscore: "allow",
                     },
                     {
                         selector: "variable",
                         format: ["camelCase", "UPPER_CASE"],
                         leadingUnderscore: "allow",
-                        trailingUnderscore: "allow"
+                        trailingUnderscore: "allow",
                     },
                     {
                         selector: "typeLike",
-                        format: ["PascalCase"]
+                        format: ["PascalCase"],
                     },
                     {
                         selector: "function",
-                        format: ["camelCase", "PascalCase"]
-                    }
-                ]
-            }
-        }
+                        format: ["camelCase", "PascalCase"],
+                    },
+                ],
+            },
+        },
     ];
 
     return json((actual: Eslintrc | null): Eslintrc => {
         const _extends = [
             "eslint:recommended",
             "plugin:@typescript-eslint/recommended",
-            "plugin:@typescript-eslint/recommended-requiring-type-checking"
+            "plugin:@typescript-eslint/recommended-requiring-type-checking",
         ];
 
         if (react) {
@@ -109,17 +109,17 @@ export const updateEslintrc = (config: Config) => {
                 project: "./tsconfig.json",
                 sourceType: "module",
                 ecmaVersion: 2022,
-                ecmaFeatures
+                ecmaFeatures,
             },
             settings,
             rules: {},
             overrides: react ? tsxOverrides : undefined,
-            ...actual?.extends
+            ...actual?.extends,
         };
 
         expected.rules = {
             ...defaultRules,
-            ...actual?.rules
+            ...actual?.rules,
         };
 
         return expected;

@@ -4,7 +4,7 @@ import path from "node:path";
 
 const mocha = new Mocha({
     ui: "tdd",
-    color: true
+    color: true,
 });
 
 const cwd = __dirname;

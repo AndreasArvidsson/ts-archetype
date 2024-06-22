@@ -49,9 +49,9 @@ export const updateTsconfig = (config: Config) => {
                 forceConsistentCasingInFileNames: true,
                 noImplicitReturns: true,
                 jsx: react ? "react-jsx" : undefined,
-                ...actual?.compilerOptions
+                ...actual?.compilerOptions,
             },
-            include
+            include,
         };
     });
 };

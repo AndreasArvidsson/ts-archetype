@@ -34,7 +34,7 @@ export const updatePackageJson = (config: Config) => {
     const reactDependencies = {
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-router-dom": "6.9.0"
+        "react-router-dom": "6.9.0",
     };
 
     const reactDevDependencies = {
@@ -42,7 +42,7 @@ export const updatePackageJson = (config: Config) => {
         "@types/react": "18.0.29",
         "esbuild": "0.17.13",
         "eslint-plugin-react": "7.32.2",
-        "html-esbuild-plugin": "0.2.0"
+        "html-esbuild-plugin": "0.2.0",
     };
 
     const defaultDependences = react ? reactDependencies : {};
@@ -58,7 +58,7 @@ export const updatePackageJson = (config: Config) => {
         "mocha": "10.4.0",
         "prettier": "3.3.2",
         "tsx": "4.15.7",
-        "typescript": "5.4.5"
+        "typescript": "5.4.5",
     };
 
     const defaultScripts = {
@@ -68,17 +68,17 @@ export const updatePackageJson = (config: Config) => {
             : { compile: "tsc -p ." }),
         "fix:meta": "prettier --write .",
         "test:meta": "eslint src && prettier --check .",
-        test: "tsx test/runTests.ts"
+        test: "tsx test/runTests.ts",
     };
 
     return json((actual: PackageJson | null): PackageJson => {
         const dependencies = sortObject({
             ...defaultDependences,
-            ...actual?.dependencies
+            ...actual?.dependencies,
         });
         const devDependencies = sortObject({
             ...defaultDevDependencies,
-            ...actual?.devDependencies
+            ...actual?.devDependencies,
         });
 
         const repository = `${authorRepository}/${projectName}`;
@@ -97,18 +97,18 @@ export const updatePackageJson = (config: Config) => {
             homepage: repository,
             repository: {
                 type: "git",
-                url: `git+${repository}.git`
+                url: `git+${repository}.git`,
             },
             bugs: {
-                url: `${repository}/issues`
+                url: `${repository}/issues`,
             },
             ...actual,
             scripts: {
                 ...defaultScripts,
-                ...actual?.scripts
+                ...actual?.scripts,
             },
             dependencies,
-            devDependencies
+            devDependencies,
         };
     });
 };

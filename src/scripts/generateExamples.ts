@@ -15,7 +15,7 @@ import { updateReadme } from "../updateReadme";
 import { updateTsconfig } from "../updateTsconfig";
 import { updateVscodeSettings } from "../updateVscode";
 
-export const defaultConfig: Config = {
+const defaultConfig: Config = {
     author: "Andreas Arvidsson",
     authorRepository: "https://github.com/AndreasArvidsson",
     projectName: "example-project",
@@ -33,15 +33,15 @@ async function generateExample(isReact: boolean) {
 
     await updaterWithOptions(
         {
-            ["package.json"]: updatePackageJson(config),
-            ["LICENSE"]: updateLicense(config),
-            ["README.md"]: updateReadme(config),
-            [".gitignore"]: updateGitignore(config),
-            ["tsconfig.json"]: updateTsconfig(config),
-            [".prettierrc.json"]: updatePrettierrc(config),
-            [".prettierignore"]: updatePrettierignore(config),
             [".eslintrc.json"]: updateEslintrc(config),
+            [".gitignore"]: updateGitignore(config),
+            [".prettierignore"]: updatePrettierignore(config),
+            [".prettierrc.json"]: updatePrettierrc(config),
             [".vscode/settings.json"]: updateVscodeSettings(config),
+            ["LICENSE"]: updateLicense(config),
+            ["package.json"]: updatePackageJson(config),
+            ["README.md"]: updateReadme(config),
+            ["tsconfig.json"]: updateTsconfig(config),
             ...(isReact ? { ["esbuild.ts"]: updateEsbuild(config) } : {}),
         },
         { workspaceDir }

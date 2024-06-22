@@ -14,16 +14,23 @@
         "ecmaVersion": 2022
     },
     "rules": {
-        "no-warning-comments": "warn",
-        "@typescript-eslint/semi": "warn",
         "@typescript-eslint/naming-convention": "error",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/semi": "warn",
         "curly": "error",
         "no-throw-literal": "error",
+        "no-warning-comments": "warn",
         "eqeqeq": [
             "error",
             "always",
             {
                 "null": "never"
+            }
+        ],
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "argsIgnorePattern": "^_"
             }
         ]
     }

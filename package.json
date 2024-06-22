@@ -1,28 +1,35 @@
 {
     "name": "ts-archetype",
-    "version": "0.0.1",
-    "private": true,
+    "version": "0.1.0",
     "author": "Andreas Arvidsson",
     "license": "MIT",
+    "main": "./lib/index.js",
+    "types": "lib/types/index.d.ts",
+    "files": [
+        "lib/*",
+        "!lib/scripts/*",
+        "!lib/types/scripts/*"
+    ],
     "homepage": "https://github.com/AndreasArvidsson/ts-archetype",
     "repository": {
         "type": "git",
-        "url": "https://github.com/AndreasArvidsson/ts-archetype"
+        "url": "git+https://github.com/AndreasArvidsson/ts-archetype.git"
     },
     "bugs": {
         "url": "https://github.com/AndreasArvidsson/ts-archetype/issues"
     },
     "scripts": {
-        "generate": "tsx src/index.ts && prettier --write generated",
-        "generate-examples": "tsx src/generateExamples.ts && prettier --write examples",
-        "lint": "tsc -p . && eslint src",
-        "prettier": "prettier --write ."
+        "compile": "tsc -p .",
+        "generate-examples": "tsx src/scripts/generateExamples.ts && prettier --write examples",
+        "fix:meta": "prettier --write .",
+        "test:meta": "eslint src && prettier --check ."
     },
     "devDependencies": {
         "@types/node": "^18.15.0",
         "@typescript-eslint/eslint-plugin": "^5.56.0",
         "@typescript-eslint/parser": "^5.56.0",
         "eslint": "^8.36.0",
+        "file-updater": "0.3.1",
         "prettier": "^2.8.7",
         "tsx": "^3.12.6",
         "typescript": "^5.0.2"

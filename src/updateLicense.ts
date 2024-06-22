@@ -1,10 +1,9 @@
-import { Config } from "./config";
-import { writeFile } from "./util";
+import type { Config } from "./types";
 
-export const generateLicense = (config: Config) => {
+export const updateLicense = (config: Config) => {
     const year = new Date().getFullYear();
 
-    const content = `
+    const mitLicense = `
 MIT License
 
 Copyright (c) ${year} ${config.author}
@@ -26,7 +25,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-`;
+`.trimStart();
 
-    writeFile(config, "LICENSE", content.trimStart());
+    return (actual: string | null) => actual || mitLicense;
 };

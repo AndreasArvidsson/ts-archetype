@@ -19,10 +19,10 @@
         "@typescript-eslint/naming-convention": "error",
         "curly": "error",
         "no-throw-literal": "error",
-        "no-unused-vars": [
-            "error",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
             {
-                "args": "none"
+                "argsIgnorePattern": "^_"
             }
         ],
         "eqeqeq": [

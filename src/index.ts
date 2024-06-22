@@ -1,4 +1,11 @@
-import { config } from "./config";
-import { generate } from "./generate";
-
-generate(config);
+export * from "./createSrcDir";
+export * from "./createTestDir";
+export * from "./updateEsbuild";
+export * from "./updateEslintrc";
+export * from "./updateGitignore";
+export * from "./updateLicense";
+export * from "./updatePackageJson";
+export * from "./updatePrettierrc";
+export * from "./updateReadme";
+export * from "./updateTsconfig";
+export * from "./updateVscode";

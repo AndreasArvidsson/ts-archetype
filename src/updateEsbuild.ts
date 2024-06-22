@@ -1,5 +1,4 @@
-import { Config } from "./config";
-import { writeFile } from "./util";
+import type { Config } from "./types";
 
 const libContent = `
 import esbuild from "esbuild";
@@ -55,7 +54,7 @@ async function build() {
 }
 `;
 
-export const generateEsbuild = (config: Config) => {
+export const updateEsbuild = (config: Config) => {
     const trailingContent = `
 async function watch() {
     const ctx = await esbuild.context(options);
@@ -72,7 +71,7 @@ async function watch() {
 `;
 
     const content = config.react ? reactContent : libContent;
-    const fullContent = `${content}${trailingContent}`;
+    const expected = `${content}${trailingContent}`.trimStart();
 
-    writeFile(config, "esbuild.ts", fullContent.trimStart());
+    return (actual: string | null) => actual || expected;
 };

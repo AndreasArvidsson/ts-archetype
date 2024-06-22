@@ -1,28 +1,7 @@
-import fs from "node:fs";
-import path from "node:path";
-import { Config } from "./config";
+import * as path from "node:path";
+import * as fs from "node:fs";
 
 export const resourcesDir = path.join(__dirname, "../resources");
-
-export const generateDir = (config: Config): string => {
-    if (!config.outDir) {
-        console.log(__dirname, config.outDir);
-    }
-    return path.join(__dirname, "..", config.outDir);
-};
-
-export const makeGenerateDir = (config: Config) => {
-    fs.rmSync(generateDir(config), { recursive: true, force: true });
-    fs.mkdirSync(generateDir(config), { recursive: true });
-};
-
-export const writeFile = (config: Config, filename: string, content: string | object) => {
-    content = typeof content === "string" ? content : JSON.stringify(content, null, 4);
-
-    const fullPath = path.join(generateDir(config), filename);
-
-    fs.writeFileSync(fullPath, content);
-};
 
 export const sortObject = (obj: { [key: string]: string }) => {
     const res: { [key: string]: string } = {};
@@ -33,3 +12,19 @@ export const sortObject = (obj: { [key: string]: string }) => {
     }
     return res;
 };
+
+export function uniqueValues(arr: string[]) {
+    return arr.filter((value, index, arr) => arr.indexOf(value) === index);
+}
+
+export function makeDirs(dirPath: string) {
+    fs.mkdirSync(dirPath, { recursive: true });
+}
+
+export function copyFile(source: string, destination: string) {
+    fs.cpSync(source, destination, { recursive: true });
+}
+
+export function fileExists(filePath: string) {
+    return fs.existsSync(filePath);
+}

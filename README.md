@@ -19,6 +19,22 @@ File: `package.json`
 File: `.file-updater.mjs`
 
 ```ts
+import { updater } from "file-updater";
+import {
+    updateEslintrc,
+    updateGitignore,
+    updatePrettierignore,
+    updatePrettierrc,
+    updateVscodeSettings,
+    updateEsbuild,
+    updateLicense,
+    updatePackageJson,
+    updateReadme,
+    updateTsconfig,
+    createSrcDir,
+    createTestDir,
+} from "ts-archetype";
+
 const config = {
     author: "Andreas Arvidsson",
     authorRepository: "https://github.com/AndreasArvidsson",
@@ -35,7 +51,7 @@ export default async (workspaceDir) => {
         ".prettierrc.json": updatePrettierrc(config),
         ".vscode/settings.json": updateVscodeSettings(config),
         "esbuild.ts": updateEsbuild(config),
-        "LICENSE": updateLicense(config),
+        LICENSE: updateLicense(config),
         "package.json": updatePackageJson(config),
         "README.md": updateReadme(config),
         "tsconfig.json": updateTsconfig(config),

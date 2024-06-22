@@ -5,6 +5,7 @@ export * from "./updateEslintrc";
 export * from "./updateGitignore";
 export * from "./updateLicense";
 export * from "./updatePackageJson";
+export * from "./updatePrettierignore";
 export * from "./updatePrettierrc";
 export * from "./updateReadme";
 export * from "./updateTsconfig";

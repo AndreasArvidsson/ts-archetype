@@ -27,7 +27,7 @@ const config = {
     react: true,
 };
 
-export default async () => {
+export default async (workspaceDir) => {
     await updater({
         ".eslintrc.json": updateEslintrc(config),
         ".gitignore": updateGitignore(config),

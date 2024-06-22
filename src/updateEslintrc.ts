@@ -114,12 +114,12 @@ export const updateEslintrc = (config: Config) => {
             settings,
             rules: {},
             overrides: react ? tsxOverrides : undefined,
-            ...actual?.extends,
+            ...(actual?.extends ?? {}),
         };
 
         expected.rules = {
             ...defaultRules,
-            ...actual?.rules,
+            ...(actual?.rules ?? {}),
         };
 
         return expected;

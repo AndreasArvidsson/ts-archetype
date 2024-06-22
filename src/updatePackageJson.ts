@@ -74,12 +74,16 @@ export const updatePackageJson = (config: Config) => {
     return json((actual: PackageJson | null): PackageJson => {
         const dependencies = sortObject({
             ...defaultDependences,
-            ...actual?.dependencies,
+            ...(actual?.dependencies ?? {}),
         });
         const devDependencies = sortObject({
             ...defaultDevDependencies,
-            ...actual?.devDependencies,
+            ...(actual?.devDependencies ?? {}),
         });
+        const scripts = {
+            ...defaultScripts,
+            ...(actual?.scripts ?? {}),
+        };
 
         const repository = `${authorRepository}/${projectName}`;
 
@@ -103,10 +107,7 @@ export const updatePackageJson = (config: Config) => {
                 url: `${repository}/issues`,
             },
             ...actual,
-            scripts: {
-                ...defaultScripts,
-                ...actual?.scripts,
-            },
+            scripts,
             dependencies,
             devDependencies,
         };

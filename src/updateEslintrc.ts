@@ -34,7 +34,7 @@ interface Eslintrc {
 }
 
 export const updateEslintrc = (config: Config) => {
-    const { react } = config;
+    const react = config.projectType === "reactApp";
     const ecmaFeatures = react ? { jsx: true } : undefined;
     const settings = react ? { react: { version: "detect" } } : undefined;
 

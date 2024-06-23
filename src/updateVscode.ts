@@ -9,7 +9,7 @@ export const updateVscodeSettings = (_config: Config) => {
     return json((actual: VscodeSettings | null): VscodeSettings => {
         return {
             ["editor.defaultFormatter"]: "esbenp.prettier-vscode",
-            ...actual,
+            ...(actual ?? {}),
         };
     });
 };

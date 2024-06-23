@@ -70,8 +70,18 @@ async function watch() {
 })();
 `;
 
-    const content = config.react ? reactContent : libContent;
-    const expected = `${content}${trailingContent}`.trimStart();
+    const content = (() => {
+        switch (config.projectType) {
+            case "reactApp":
+                return reactContent;
+            case "nodeLib":
+                return libContent;
+            default:
+                return undefined;
+        }
+    })();
+
+    const expected = content != null ? `${content}${trailingContent}`.trimStart() : null;
 
     return (actual: string | null) => actual || expected;
 };

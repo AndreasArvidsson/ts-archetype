@@ -24,9 +24,38 @@ interface Tsconfig {
     include: string[];
 }
 
+interface Parameters {
+    outDir: string;
+    declarationDir?: string;
+    declaration?: boolean;
+    sourceMap?: boolean;
+    noEmit?: boolean;
+    jsx?: "react-jsx";
+    extraLibs?: string[];
+}
+
 export const updateTsconfig = (config: Config) => {
-    const { react } = config;
+    const react = config.projectType === "reactApp";
     const target = react ? "ES6" : "ESNext";
+
+    const { outDir, declaration, declarationDir, extraLibs, noEmit, sourceMap, jsx }: Parameters =
+        (() => {
+            switch (config.projectType) {
+                case "nodeApp":
+                    return { outDir: "out" };
+                case "nodeLib":
+                    return {
+                        outDir: "lib",
+                        declaration: true,
+                        declarationDir: "lib/types",
+                        sourceMap: true,
+                    };
+                case "vscodeExtension":
+                    return { outDir: "out", sourceMap: true };
+                case "reactApp":
+                    return { outDir: "out", extraLibs: ["DOM"], jsx: "react-jsx", noEmit: true };
+            }
+        })();
 
     return json((actual: Tsconfig | null): Tsconfig => {
         const include = actual?.include ?? ["src"];
@@ -35,20 +64,20 @@ export const updateTsconfig = (config: Config) => {
             compilerOptions: {
                 module: "NodeNext",
                 target: target,
-                lib: ["ESNext", ...(react ? ["DOM"] : [])],
+                lib: ["ESNext", ...(extraLibs ?? [])],
                 moduleResolution: "NodeNext",
                 rootDir: "src",
-                outDir: react ? undefined : "lib",
-                declarationDir: react ? undefined : "lib/types",
+                outDir,
+                declarationDir,
                 esModuleInterop: true,
-                declaration: react ? undefined : true,
-                sourceMap: react ? undefined : true,
-                noEmit: react ? true : undefined,
-                noEmitOnError: react ? undefined : true,
+                declaration,
+                sourceMap,
+                noEmit,
+                noEmitOnError: noEmit ? undefined : true,
                 strict: true,
                 forceConsistentCasingInFileNames: true,
                 noImplicitReturns: true,
-                jsx: react ? "react-jsx" : undefined,
+                jsx,
                 ...actual?.compilerOptions,
             },
             include,

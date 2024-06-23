@@ -5,6 +5,7 @@
         "lib": ["ESNext", "DOM"],
         "moduleResolution": "NodeNext",
         "rootDir": "src",
+        "outDir": "out",
         "esModuleInterop": true,
         "noEmit": true,
         "strict": true,

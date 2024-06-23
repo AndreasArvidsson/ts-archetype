@@ -2,10 +2,13 @@
     "name": "example-project",
     "displayName": "Example project",
     "version": "0.1.0",
+    "description": "TODO",
     "author": "Andreas Arvidsson",
+    "publisher": "AndreasArvidsson",
     "license": "MIT",
     "private": true,
     "homepage": "https://github.com/AndreasArvidsson/example-project",
+    "funding": "https://github.com/sponsors/AndreasArvidsson",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/AndreasArvidsson/example-project.git"
@@ -15,29 +18,20 @@
     },
     "scripts": {
         "start": "tsx src/index.ts",
-        "build": "tsc -p . && tsx esbuild.ts",
-        "watch": "tsx esbuild.ts --watch",
-        "fix:meta": "prettier --write .",
-        "test:meta": "eslint src && prettier --check .",
+        "compile": "tsc -p .",
+        "clean": "rm -rf out",
+        "fix:meta": "file-updater && prettier --write .",
+        "test:meta": "eslint src && file-updater --test && prettier --check .",
         "test": "tsx test/runTests.ts"
     },
-    "dependencies": {
-        "react": "18.2.0",
-        "react-dom": "18.2.0",
-        "react-router-dom": "6.9.0"
-    },
+    "dependencies": {},
     "devDependencies": {
         "@types/mocha": "10.0.6",
         "@types/node": "20.14.7",
-        "@types/react": "18.0.29",
-        "@types/react-dom": "18.0.11",
         "@typescript-eslint/eslint-plugin": "7.13.1",
         "@typescript-eslint/parser": "7.13.1",
-        "esbuild": "0.17.13",
         "eslint": "8.57.0",
-        "eslint-plugin-react": "7.32.2",
         "glob": "10.4.2",
-        "html-esbuild-plugin": "0.2.0",
         "mocha": "10.4.0",
         "prettier": "3.3.2",
         "tsx": "4.15.7",

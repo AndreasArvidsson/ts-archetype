@@ -1,7 +1,7 @@
 import assert from "node:assert";
 
-describe("tests", () => {
-    it("test", () => {
+suite("suite", () => {
+    test("test", () => {
         assert.equal(1, 2);
     });
 });

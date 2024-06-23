@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { createSrcDir } from "../createSrcDir";
 import { createTestDir } from "../createTestDir";
-import { type Config } from "../types";
+import { projectTypes, type Config, type ProjectType } from "../types";
 import { updateEsbuild } from "../updateEsbuild";
 import { updateEslintrc } from "../updateEslintrc";
 import { updateGitignore } from "../updateGitignore";
@@ -15,21 +15,22 @@ import { updateReadme } from "../updateReadme";
 import { updateTsconfig } from "../updateTsconfig";
 import { updateVscodeSettings } from "../updateVscode";
 
-const defaultConfig: Config = {
+const defaultConfig = {
     author: "Andreas Arvidsson",
+    publisher: "AndreasArvidsson",
     authorRepository: "https://github.com/AndreasArvidsson",
+    funding: "https://github.com/sponsors/AndreasArvidsson",
     projectName: "example-project",
     displayName: "Example project",
 };
 
 const examplesDir = path.join(__dirname, "../../examples");
 
-async function generateExample(isReact: boolean) {
-    const name = isReact ? "react" : "lib";
-    const workspaceDir = path.join(examplesDir, name);
-    const config = { ...defaultConfig, react: isReact };
+async function generateExample(projectType: ProjectType) {
+    const workspaceDir = path.join(examplesDir, projectType);
+    const config: Config = { ...defaultConfig, projectType };
 
-    console.log(`Generating ${name} example...`);
+    console.log(`Generating ${projectType} example...`);
 
     await updaterWithOptions(
         {
@@ -42,9 +43,9 @@ async function generateExample(isReact: boolean) {
             ["package.json"]: updatePackageJson(config),
             ["README.md"]: updateReadme(config),
             ["tsconfig.json"]: updateTsconfig(config),
-            ...(isReact ? { ["esbuild.ts"]: updateEsbuild(config) } : {}),
+            ...(projectType === "reactApp" ? { ["esbuild.ts"]: updateEsbuild(config) } : {}),
         },
-        { workspaceDir }
+        { workspaceDir, quiet: true }
     );
 
     createSrcDir(config, workspaceDir);
@@ -54,6 +55,7 @@ async function generateExample(isReact: boolean) {
 void (async () => {
     fs.rmSync(examplesDir, { recursive: true, force: true });
 
-    await generateExample(false);
-    await generateExample(true);
+    for (const projectType of projectTypes) {
+        await generateExample(projectType);
+    }
 })();

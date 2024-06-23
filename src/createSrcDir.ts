@@ -1,8 +1,8 @@
 import path from "node:path";
-import type { Config } from "./types";
+import type { UpdaterConfig } from "./types";
 import { copyFile, fileExists, makeDirs, resourcesDir } from "./util";
 
-export const createSrcDir = (config: Config, workspaceDir: string) => {
+export const createSrcDir = (config: UpdaterConfig, workspaceDir: string) => {
     const srcDir = path.join(workspaceDir, "src");
 
     if (fileExists(srcDir)) {

@@ -1,6 +1,6 @@
-import type { Config } from "./types";
+import type { UpdaterConfig } from "./types";
 
-export const updateLicense = (config: Config) => {
+export const updateLicense = (config: UpdaterConfig) => {
     const year = new Date().getFullYear();
 
     const mitLicense = `

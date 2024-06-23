@@ -2,7 +2,7 @@ export const projectTypes = ["nodeApp", "nodeLib", "reactApp", "vscodeExtension"
 
 export type ProjectType = (typeof projectTypes)[number];
 
-export interface Config {
+export interface UpdaterConfig {
     projectType: ProjectType;
     author: string;
     authorRepository: string;

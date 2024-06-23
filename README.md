@@ -38,9 +38,10 @@ import {
 const config = {
     author: "Andreas Arvidsson",
     authorRepository: "https://github.com/AndreasArvidsson",
+    funding: "https://github.com/sponsors/AndreasArvidsson",
     projectName: "example-project",
     displayName: "Example project",
-    react: true,
+    projectType: "vscodeExtension",
 };
 
 export default async (workspaceDir) => {
@@ -51,7 +52,7 @@ export default async (workspaceDir) => {
         ".prettierrc.json": updatePrettierrc(config),
         ".vscode/settings.json": updateVscodeSettings(config),
         "esbuild.ts": updateEsbuild(config),
-        LICENSE: updateLicense(config),
+        "LICENSE": updateLicense(config),
         "package.json": updatePackageJson(config),
         "README.md": updateReadme(config),
         "tsconfig.json": updateTsconfig(config),

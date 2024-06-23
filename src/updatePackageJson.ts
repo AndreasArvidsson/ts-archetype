@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 import { json } from "file-updater";
-import type { Config } from "./types";
+import type { UpdaterConfig } from "./types";
 import { sortObject } from "./util";
 
 interface VscodeFields {
@@ -39,7 +39,7 @@ interface PackageJson extends Partial<VscodeFields> {
     devDependencies?: Record<string, string>;
 }
 
-export const updatePackageJson = (config: Config) => {
+export const updatePackageJson = (config: UpdaterConfig) => {
     const { projectName, displayName, author, authorRepository, funding, publisher, projectType } =
         config;
     const react = projectType === "reactApp";

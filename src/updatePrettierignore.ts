@@ -1,6 +1,6 @@
-import type { Config } from "./types";
+import type { UpdaterConfig } from "./types";
 
-export const updatePrettierignore = (config: Config) => {
+export const updatePrettierignore = (config: UpdaterConfig) => {
     const lines = ["/node_modules"];
 
     switch (config.projectType) {

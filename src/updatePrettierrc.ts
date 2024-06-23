@@ -1,12 +1,12 @@
 import { json } from "file-updater";
-import type { Config } from "./types";
+import type { UpdaterConfig } from "./types";
 
 interface PrettierConfig {
     tabWidth: number;
     printWidth: number;
 }
 
-export const updatePrettierrc = (_config: Config) => {
+export const updatePrettierrc = (_config: UpdaterConfig) => {
     return json((actual: PrettierConfig | null): PrettierConfig => {
         return {
             tabWidth: 4,

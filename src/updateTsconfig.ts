@@ -1,5 +1,5 @@
 import { json } from "file-updater";
-import type { Config } from "./types";
+import type { UpdaterConfig } from "./types";
 
 interface Tsconfig {
     compilerOptions: {
@@ -34,7 +34,7 @@ interface Parameters {
     extraLibs?: string[];
 }
 
-export const updateTsconfig = (config: Config) => {
+export const updateTsconfig = (config: UpdaterConfig) => {
     const react = config.projectType === "reactApp";
     const target = react ? "ES6" : "ESNext";
 

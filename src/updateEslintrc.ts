@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 
 import { json } from "file-updater";
-import type { Config } from "./types";
+import type { UpdaterConfig } from "./types";
 
 type Rules = Record<string, string | (object | string)[]>;
 
@@ -33,7 +33,7 @@ interface Eslintrc {
     overrides?: Override[];
 }
 
-export const updateEslintrc = (config: Config) => {
+export const updateEslintrc = (config: UpdaterConfig) => {
     const react = config.projectType === "reactApp";
     const ecmaFeatures = react ? { jsx: true } : undefined;
     const settings = react ? { react: { version: "detect" } } : undefined;

@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { createSrcDir } from "../createSrcDir";
 import { createTestDir } from "../createTestDir";
-import { projectTypes, type Config, type ProjectType } from "../types";
+import { projectTypes, type UpdaterConfig, type ProjectType } from "../types";
 import { updateEsbuild } from "../updateEsbuild";
 import { updateEslintrc } from "../updateEslintrc";
 import { updateGitignore } from "../updateGitignore";
@@ -28,7 +28,7 @@ const examplesDir = path.join(__dirname, "../../examples");
 
 async function generateExample(projectType: ProjectType) {
     const workspaceDir = path.join(examplesDir, projectType);
-    const config: Config = { ...defaultConfig, projectType };
+    const config: UpdaterConfig = { ...defaultConfig, projectType };
 
     console.log(`Generating ${projectType} example...`);
 

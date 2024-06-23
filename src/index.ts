@@ -10,4 +10,4 @@ export * from "./updatePrettierrc";
 export * from "./updateReadme";
 export * from "./updateTsconfig";
 export * from "./updateVscode";
-export { Config } from "./types";
+export { UpdaterConfig } from "./types";

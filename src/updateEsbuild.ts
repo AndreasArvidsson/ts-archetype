@@ -1,4 +1,4 @@
-import type { Config } from "./types";
+import type { UpdaterConfig } from "./types";
 
 const libContent = `
 import esbuild from "esbuild";
@@ -54,7 +54,7 @@ async function build() {
 }
 `;
 
-export const updateEsbuild = (config: Config) => {
+export const updateEsbuild = (config: UpdaterConfig) => {
     const trailingContent = `
 async function watch() {
     const ctx = await esbuild.context(options);

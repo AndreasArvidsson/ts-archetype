@@ -1,6 +1,6 @@
-import type { Config } from "./types";
+import type { UpdaterConfig } from "./types";
 
-export const updateGitignore = (config: Config) => {
+export const updateGitignore = (config: UpdaterConfig) => {
     const lines = ["/node_modules"];
 
     switch (config.projectType) {

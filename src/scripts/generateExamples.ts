@@ -43,7 +43,9 @@ async function generateExample(projectType: ProjectType) {
             ["package.json"]: updatePackageJson(config),
             ["README.md"]: updateReadme(config),
             ["tsconfig.json"]: updateTsconfig(config),
-            ...(projectType === "reactApp" ? { ["esbuild.ts"]: updateEsbuild(config) } : {}),
+            ...(projectType === "reactApp" || projectType === "nodeLib"
+                ? { ["esbuild.ts"]: updateEsbuild(config) }
+                : {}),
         },
         { workspaceDir, quiet: true }
     );

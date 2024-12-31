@@ -1,7 +1,20 @@
 import type { UpdaterConfig } from "./types";
 
 const libContent = `
-import esbuild from "esbuild";
+import esbuild, { Plugin } from "esbuild";
+
+const plugins: Plugin[] = [
+    {
+        name: "rebuild-notify",
+        setup(build) {
+            build.onEnd((result) => {
+                if (result.errors.length === 0) {
+                    console.log("Build successful");
+                }
+            });
+        },
+    },
+];
 
 const options: esbuild.BuildOptions = {
     entryPoints: ["src/index.ts"],
@@ -9,6 +22,7 @@ const options: esbuild.BuildOptions = {
     platform: "node",
     packages: "external",
     bundle: true,
+    plugins,
 };
 
 async function build() {
